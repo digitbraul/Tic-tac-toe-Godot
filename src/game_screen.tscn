@@ -1,0 +1,265 @@
+[gd_scene load_steps=10 format=3 uid="uid://cwp8ehxopk0u7"]
+
+[ext_resource type="Script" path="res://src/game_screen.gd" id="1_55s3n"]
+[ext_resource type="PackedScene" uid="uid://bvfeieo7vkpn4" path="res://src/cell.tscn" id="2_7102i"]
+[ext_resource type="Texture2D" uid="uid://cxgq40akao0ym" path="res://assets/game.png" id="2_rvv3h"]
+[ext_resource type="Script" path="res://src/game_grid.gd" id="2_x21jy"]
+[ext_resource type="Theme" uid="uid://c2klul3c27ej2" path="res://assets/theme.tres" id="5_qi4yc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01ctb"]
+atlas = ExtResource("2_rvv3h")
+region = Rect2(0, 12, 36, 36)
+
+[sub_resource type="Animation" id="Animation_v0fve"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridV:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(108, 108)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridV:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GridH:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(108, 108)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GridH:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_clp1q"]
+resource_name = "game_start"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GridV:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(108, 8), Vector2(108, 108)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GridV:modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"start_animation"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("GridH:size")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(108, 8), Vector2(108, 108)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("GridH:modulate")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k3cde"]
+_data = {
+"RESET": SubResource("Animation_v0fve"),
+"game_start": SubResource("Animation_clp1q")
+}
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_55s3n")
+
+[node name="GameGrid" type="GridContainer" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(108, 108)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -53.0
+offset_top = -54.0
+offset_right = 55.0
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 0
+columns = 3
+script = ExtResource("2_x21jy")
+
+[node name="TL" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="TM" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="TR" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="ML" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="MM" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="MR" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="BL" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="BM" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="BR" parent="GameGrid" instance=ExtResource("2_7102i")]
+layout_mode = 2
+
+[node name="GridV" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 126.0
+offset_top = 266.0
+offset_right = 234.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_01ctb")
+
+[node name="GridH" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 234.0
+offset_top = 266.0
+offset_right = 342.0
+offset_bottom = 374.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+mouse_filter = 2
+texture = SubResource("AtlasTexture_01ctb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_k3cde")
+}
+autoplay = "game_start"
+
+[node name="TurnLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -114.0
+offset_bottom = -62.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_qi4yc")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[wave amp=10.0 freq=2.5 connected=0][center]YOUR TURN![center]"
+fit_content = true
+
+[node name="NotificationLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("5_qi4yc")
+theme_override_colors/default_color = Color(0.411765, 0.45098, 0.611765, 1)
+theme_override_colors/font_shadow_color = Color(0.105882, 0.121569, 0.188235, 1)
+theme_override_constants/shadow_offset_y = 1
+bbcode_enabled = true
+text = "[pulse][center]Tap anywhere to play again![/center][/pulse]"

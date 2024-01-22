@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://bvfeieo7vkpn4"]
+
+[ext_resource type="Texture2D" uid="uid://cxgq40akao0ym" path="res://assets/game.png" id="1_amx06"]
+[ext_resource type="Script" path="res://src/cell.gd" id="1_tm2ei"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0e2aj"]
+atlas = ExtResource("1_amx06")
+region = Rect2(60, 12, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px7uj"]
+atlas = ExtResource("1_amx06")
+region = Rect2(36, 24, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1j0jq"]
+atlas = ExtResource("1_amx06")
+region = Rect2(48, 24, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyxna"]
+atlas = ExtResource("1_amx06")
+region = Rect2(60, 24, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qmih"]
+atlas = ExtResource("1_amx06")
+region = Rect2(36, 36, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bge6u"]
+atlas = ExtResource("1_amx06")
+region = Rect2(48, 36, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnehd"]
+atlas = ExtResource("1_amx06")
+region = Rect2(60, 36, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uxet0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px7uj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1j0jq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pyxna")
+}],
+"loop": false,
+"name": &"O_triggered",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qmih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bge6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnehd")
+}],
+"loop": false,
+"name": &"X_triggered",
+"speed": 5.0
+}]
+
+[node name="Cell" type="Control"]
+clip_contents = true
+custom_minimum_size = Vector2(32, 36)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 32.0
+offset_bottom = 36.0
+script = ExtResource("1_tm2ei")
+
+[node name="CellBG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 36.0
+offset_bottom = 36.0
+texture = SubResource("AtlasTexture_0e2aj")
+
+[node name="ClickRegion" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="Texture" type="AnimatedSprite2D" parent="."]
+position = Vector2(17.5, 18)
+scale = Vector2(3.25, 3)
+sprite_frames = SubResource("SpriteFrames_uxet0")
+animation = &"O_triggered"
+
+[connection signal="button_down" from="ClickRegion" to="." method="_on_click_region_button_down"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=3 uid="uid://br5wchdev7gus"]
+
+[ext_resource type="Script" path="res://src/multiplayer_controller.gd" id="1_keyt7"]
+[ext_resource type="Theme" uid="uid://c2klul3c27ej2" path="res://assets/theme.tres" id="1_r747o"]
+[ext_resource type="Texture2D" uid="uid://cxgq40akao0ym" path="res://assets/game.png" id="3_btos2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xa6wr"]
+atlas = ExtResource("3_btos2")
+region = Rect2(60, 24, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkbpg"]
+atlas = ExtResource("3_btos2")
+region = Rect2(60, 36, 12, 12)
+
+[node name="MainScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r747o")
+script = ExtResource("1_keyt7")
+
+[node name="GameTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -61.0
+offset_right = 26.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_xa6wr")
+
+[node name="GameTexture2" type="TextureRect" parent="GameTexture"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = -29.0
+offset_right = 89.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.722566
+texture = SubResource("AtlasTexture_gkbpg")
+
+[node name="StartLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 15.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0.6, 0.858824, 1)
+theme_override_colors/font_shadow_color = Color(0.105882, 0.121569, 0.188235, 1)
+theme_override_constants/shadow_offset_y = 1
+bbcode_enabled = true
+text = "[pulse][center]Waiting for players...[/center][/pulse]"
+
+[node name="NotificationLabel" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
